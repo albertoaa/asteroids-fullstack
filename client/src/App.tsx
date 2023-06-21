@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react';
+import DatePicker from 'react-tailwindcss-datepicker';
+import { DateValueType } from 'react-tailwindcss-datepicker/dist/types';
 
 import './App.css';
 
 import { GetAsteroidParams, getAsteroids } from './api';
 import { AsteroidsList } from './components/AsteroidsList';
-import { Asteroid } from './types';
+import { Asteroid, DateRange } from './types';
 
 function App() {
   const [asteroids, setAsteroids] = useState<Asteroid[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [start_date] = useState<string>('2015-09-07');
-  const [end_date] = useState<string>('2015-09-08');
+  const [date, setDate] = useState<DateRange>({
+    startDate: '2015-09-07',
+    endDate: '2015-09-08',
+  });
 
   useEffect(() => {
     const params: GetAsteroidParams = {
-      start_date: start_date,
-      end_date: end_date,
+      start_date: date.startDate?.toString(),
+      end_date: date.endDate,
     };
 
     getAsteroids(params).then((res) => {
@@ -40,9 +44,21 @@ function App() {
     });
   }, []);
 
+  const handleDateValueChange = (date: DateValueType) => {
+    console.log('newValue:', date);
+    const newDate = date as DateRange;
+    setDate(newDate);
+  };
+
   return (
-    <div className='container my-12 mx-auto md:px-12 flex flex-col align-middle justify-center'>
+    <div className='flex container my-12 mx-auto md:px-12 flex-col align-middle justify-center'>
       <h1 className='text-4xl font-bold flex flex-row w-full justify-center mb-12'>Asteroids</h1>
+      <div className='w-1/2 flex flex-row align-middle justify-center ml-20'>
+        <h3 className='w-1/2 text-xl font-bold flex flex-row justify-center pt-2'>Select a Date Range</h3>
+        <div className='w-1/2 mx-auto border border-black rounded-lg'>
+          <DatePicker value={date} onChange={handleDateValueChange} showShortcuts={true} />
+        </div>
+      </div>
       {loading ? <div>Loading...</div> : <AsteroidsList asteroids={asteroids} />}
     </div>
   );

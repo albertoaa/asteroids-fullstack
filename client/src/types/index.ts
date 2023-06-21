@@ -10,3 +10,8 @@ export type Asteroid = {
 export type AsteroidsListProps = {
   asteroids: Asteroid[];
 };
+
+export type DateRange = {
+  startDate: string;
+  endDate: string;
+};
