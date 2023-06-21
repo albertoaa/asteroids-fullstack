@@ -3,7 +3,7 @@ import { AsteroidCard } from './AsteroidCard';
 
 export const AsteroidsList = (props: AsteroidsListProps) => {
   return (
-    <div>
+    <div className='flex flex-row flex-wrap justify-center'>
       {props.asteroids.map((asteroid) => {
         return <AsteroidCard {...asteroid} />;
       })}

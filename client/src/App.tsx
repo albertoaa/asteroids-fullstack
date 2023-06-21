@@ -27,6 +27,7 @@ function App() {
             nasa_jpl_url: asteroid.nasa_jpl_url,
             is_potentially_hazardous_asteroid: asteroid.is_potentially_hazardous_asteroid,
             is_sentry_object: asteroid.is_sentry_object,
+            absolute_magnitude_h: asteroid.absolute_magnitude_h,
           };
           asteroids.push(foundAsteroid);
         });
@@ -38,8 +39,8 @@ function App() {
   }, []);
 
   return (
-    <div className='App'>
-      <h1>Asteroids</h1>
+    <div className='container my-12 mx-auto md:px-12 flex flex-col align-middle justify-center'>
+      <h1 className='text-4xl font-bold flex flex-row w-full justify-center mb-12'>Asteroids</h1>
       {loading ? <div>Loading...</div> : <AsteroidsList asteroids={asteroids} />}
     </div>
   );
