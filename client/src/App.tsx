@@ -17,6 +17,7 @@ function App() {
   });
 
   useEffect(() => {
+    setLoading(true);
     const params: GetAsteroidParams = {
       start_date: date.startDate?.toString(),
       end_date: date.endDate,
@@ -42,12 +43,20 @@ function App() {
       setAsteroids(asteroids);
       setLoading(false);
     });
-  }, []);
+  }, [date]);
 
   const handleDateValueChange = (date: DateValueType) => {
-    console.log('newValue:', date);
     const newDate = date as DateRange;
-    setDate(newDate);
+
+    const startDate = new Date(newDate.startDate);
+    const endDate = new Date(newDate.endDate);
+    const differenceInDays = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24);
+
+    if (differenceInDays > 7) {
+      alert('Date range must be less than 7 days');
+    } else {
+      setDate(newDate);
+    }
   };
 
   return (
@@ -56,10 +65,21 @@ function App() {
       <div className='w-1/2 flex flex-row align-middle justify-center ml-20'>
         <h3 className='w-1/2 text-xl font-bold flex flex-row justify-center pt-2'>Select a Date Range</h3>
         <div className='w-1/2 mx-auto border border-black rounded-lg'>
-          <DatePicker value={date} onChange={handleDateValueChange} showShortcuts={true} />
+          <DatePicker value={date} onChange={handleDateValueChange} />
         </div>
       </div>
-      {loading ? <div>Loading...</div> : <AsteroidsList asteroids={asteroids} />}
+      {loading ? (
+        <div
+          className='mx-auto my-12 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]'
+          role='status'
+        >
+          <span className='!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]'>
+            Loading...
+          </span>
+        </div>
+      ) : (
+        <AsteroidsList asteroids={asteroids} />
+      )}
     </div>
   );
 }
