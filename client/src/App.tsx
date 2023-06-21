@@ -9,11 +9,13 @@ import { Asteroid } from './types';
 function App() {
   const [asteroids, setAsteroids] = useState<Asteroid[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [start_date] = useState<string>('2015-09-07');
+  const [end_date] = useState<string>('2015-09-08');
 
   useEffect(() => {
     const params: GetAsteroidParams = {
-      start_date: '2015-09-07',
-      end_date: '2015-09-08',
+      start_date: start_date,
+      end_date: end_date,
     };
 
     getAsteroids(params).then((res) => {
