@@ -2,19 +2,18 @@
 
 Simple project to show a list of Asteroids and their details from NASA API(https://api.nasa.gov/).
 
-
 The project has two folders:
 
 - client: React App with Typescript
 - server: NodeJS with Express
 
 ## How to run the project
-1.- Clone the project into your local machine
-2.- Install dependencies on `client` and `server` folders with `npm install`
-3.- Create a `.env` file on both folders using `.env.example` as template.
-4.- Run the server with `npm start` on `server` folder
-5.- Run the client with `npm start` on `client` folder
 
+1. Clone the project into your local machine
+2. Install dependencies on `client` and `server` folders with `npm install`
+3. Create a `.env` file on both folders using `.env.example` as template.
+4. Run the server with `npm start` on `server` folder
+5. Run the client with `npm start` on `client` folder
 
 ### Improvements
 
