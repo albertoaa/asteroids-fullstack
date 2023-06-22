@@ -15,6 +15,7 @@ function App() {
     startDate: '2015-09-07',
     endDate: '2015-09-08',
   });
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
   useEffect(() => {
     setLoading(true);
@@ -59,13 +60,34 @@ function App() {
     }
   };
 
+  const sortAsteroids = () => {
+    setLoading(true);
+    const sortedAsteroids = [...asteroids];
+    sortedAsteroids.sort((a, b) => {
+      if (sortDirection === 'asc') {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+    setAsteroids(sortedAsteroids);
+    setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    setLoading(false);
+  };
+
   return (
     <div className='flex container my-12 mx-auto md:px-12 flex-col align-middle justify-center'>
       <h1 className='text-4xl font-bold flex flex-row w-full justify-center mb-12'>Asteroids</h1>
-      <div className='w-1/2 flex flex-row align-middle justify-center ml-20'>
-        <h3 className='w-1/2 text-xl font-bold flex flex-row justify-center pt-2'>Select a Date Range</h3>
-        <div className='w-1/2 mx-auto border border-black rounded-lg'>
+      <div className='w-full flex flex-row justify-start px-40'>
+        <h3 className='w-1/5 text-xl font-bold flex flex-row justify-start pt-2'>Select a Date Range</h3>
+        <div className='w-2/5 border border-black rounded-lg'>
           <DatePicker value={date} onChange={handleDateValueChange} />
+        </div>
+        <div className='flex w-2/5 justify-end'>
+          <h4 className='mt-2 mr-2'>Sort by name:</h4>
+          <button className='px-8 bg-sky-100 border border-black rounded-lg' onClick={sortAsteroids}>
+            {sortDirection}
+          </button>
         </div>
       </div>
       {loading ? (
