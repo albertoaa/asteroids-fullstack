@@ -1,7 +1,8 @@
-The SQL Query for this task: https://github.com/irysan/test-challenge/blob/main/sql/postgres/README.md
+## SQL Task Solution
+The SQL Query for this task: <https://github.com/irysan/test-challenge/blob/main/sql/postgres/README.md>
 is as follows:
 
-```
+```sql
 SELECT
   u.name,
   u.email,
