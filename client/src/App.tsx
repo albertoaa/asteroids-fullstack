@@ -24,6 +24,7 @@ function App() {
       end_date: date.endDate,
     };
 
+    //TODO - move this logic to the backend
     getAsteroids(params).then((res) => {
       const { near_earth_objects } = res;
       const asteroids: Asteroid[] = [];

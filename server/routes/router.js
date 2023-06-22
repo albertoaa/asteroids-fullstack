@@ -12,8 +12,6 @@ router.use((req, res, next) => {
 });
 // define the home page route
 router.get('/asteroids/:from/:to/', async (req, res) => {
-  console.log(apiKey);
-  console.log(req.params);
   const { from, to } = req.params;
   const response = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${from}&end_date=${to}&api_key=${apiKey}`);
   const data = await response.json();
