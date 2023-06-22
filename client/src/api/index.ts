@@ -17,7 +17,7 @@ const getParamsString = (params: GetAsteroidParams) => {
 
 export const getAsteroids = async (params?: GetAsteroidParams) => {
   const paramsString = params ? getParamsString(params) : '';
-  const response = await fetch(`${API_URL}/feed?${paramsString}&api_key=${process.env.REACT_APP_API_KEY}`);
+  const response = await fetch(`${API_URL}/asteroids/${params?.start_date}/${params?.end_date}`);
   const data = await response.json();
   return data;
 };

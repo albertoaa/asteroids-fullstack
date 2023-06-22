@@ -8,16 +8,14 @@ const apiKey = process.env.API_KEY;
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
-  console.log('Time: ', Date.now());
   next();
 });
 // define the home page route
-router.get('/asteroids/:from/:to/:apiKey', async (req, res) => {
+router.get('/asteroids/:from/:to/', async (req, res) => {
   console.log(apiKey);
   console.log(req.params);
-  const response = await fetch(
-    `https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=${apiKey}`
-  );
+  const { from, to } = req.params;
+  const response = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${from}&end_date=${to}&api_key=${apiKey}`);
   const data = await response.json();
   res.send(data);
 });
