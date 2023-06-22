@@ -23,4 +23,4 @@ The project has two folders:
 - Adding database persistance layer to server. It would be a good idea to add a database to store the asteroids data and avoid making a request to NASA API every time the user wants to see the list of asteroids. It would be a good idea to add a cron job to update the database every day with the new asteroids. Also with this layer we can persist the user's favorite asteroids on the database.
 
 ### Notes
-The solution for the SQL task: https://github.com/irysan/test-challenge/blob/main/sql/postgres/README.md can be found on `[sql-task-solution.md](https://github.com/albertoaa/asteroids-fullstack/blob/main/sql-task-solution.md)` file.
+The solution for the SQL task: https://github.com/irysan/test-challenge/blob/main/sql/postgres/README.md can be found on [sql-task-solution.md](https://github.com/albertoaa/asteroids-fullstack/blob/main/sql-task-solution.md) file.
