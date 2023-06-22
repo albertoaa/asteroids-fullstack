@@ -18,6 +18,6 @@ The project has two folders:
 ### Improvements
 
 - Add unit tests
-- Add Typescript to server. It wasn't added because since it only one route that relies a request to NASA API, it was not necessary. But if some other routes are added and database persistance layer, it would be a good idea to add Typescript to server.
+- Add Typescript to server. It wasn't added because since it only one route that forwards a request to NASA API, it was not necessary. But if some other routes are added and database persistance layer, it would be a good idea to add Typescript to server.
 - Move some logic from `App.tsx` to the server to handle data extraction from the NASA API response.
 - Adding database persistance layer to server. It would be a good idea to add a database to store the asteroids data and avoid making a request to NASA API every time the user wants to see the list of asteroids. It would be a good idea to add a cron job to update the database every day with the new asteroids. Also with this layer we can persist the user's favorite asteroids on the database
